@@ -1726,3 +1726,19 @@ function OrionLib:Destroy()
 end
 
 return OrionLib
+
+-- New functionality for hiding the UI with 'T' keypress
+
+local UIVisible = true  -- Tracks whether the UI is visible or not
+local function ToggleUIVisibility(Input, GameProcessed)
+	if GameProcessed then return end  -- Ignore if the game has already processed the input
+	if Input.KeyCode == Enum.KeyCode.T then
+		UIVisible = not UIVisible
+		Orion.Enabled = UIVisible
+		if UIVisible then
+			print("UI is now visible.")
+		else
+			print("UI is now hidden.")
+		end
+	end
+end
