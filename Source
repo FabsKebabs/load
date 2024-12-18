@@ -683,6 +683,16 @@ function OrionLib:MakeWindow(WindowConfig)
 		Minimized = not Minimized    
 	end)
 
+-- Add a new keybind (T) to close the window
+AddConnection(UserInputService.InputBegan, function(Input)
+    if Input.KeyCode == Enum.KeyCode.RightShift and UIHidden then
+        MainWindow.Visible = true
+    elseif Input.KeyCode == Enum.KeyCode.T then
+        -- Simulate the button click when "T" is pressed
+        CloseBtn.MouseButton1Up:Fire()
+    end
+end)
+
 	local function LoadSequence()
 		MainWindow.Visible = false
 		local LoadSequenceLogo = SetProps(MakeElement("Image", WindowConfig.IntroIcon), {
